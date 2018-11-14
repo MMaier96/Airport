@@ -60,11 +60,6 @@
         </dependency>
         <dependency>
             <groupId>de.dhbw.mosbach.ai.se</groupId>
-            <artifactId>check-in-desk</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>de.dhbw.mosbach.ai.se</groupId>
             <artifactId>base</artifactId>
             <version>1.0.0</version>
         </dependency>

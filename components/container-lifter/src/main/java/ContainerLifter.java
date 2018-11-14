@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class ContainerLifter {
@@ -29,7 +30,13 @@ public class ContainerLifter {
     }
 
     public void innerNotifyGroundOperations(ContainerLifterReceipt containerLifterReceipt) {
-
+        Object groundOperationsPort = ComponentLoader.loadComponent("ground-operations-center", "GroundOperationsCenter");
+        try {
+            groundOperationsPort.getClass().getMethod("receive", ContainerLifterReceipt.class).invoke(groundOperationsPort, containerLifterReceipt);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            throw new RuntimeException("could not notify ground operations center", e);
+        }
     }
 
     public class Port implements IContainerLifter{

@@ -35,5 +35,10 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>de.dhbw.mosbach.ai.se</groupId>
+            <artifactId>bulky-baggage-desk</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 </project>

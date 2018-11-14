@@ -2,6 +2,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import base.Airplane;
 
+import static junit.framework.TestCase.assertNotNull;
+
 public class ComponentInitializationTest{
 
     @Test

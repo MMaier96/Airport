@@ -1,3 +1,5 @@
+import main.Configuration;
+import main.Database;
 import org.junit.Before;
 import org.junit.Test;
 

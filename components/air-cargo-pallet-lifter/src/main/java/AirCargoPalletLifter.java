@@ -1,4 +1,5 @@
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class AirCargoPalletLifter {
@@ -47,8 +48,15 @@ public class AirCargoPalletLifter {
 
     }
 
-
-
+    public void innerNotifyGroundOperations(AirCargoPalletLifterReceipt airCargoPalletLifterReceipt) {
+        Object groundOperationsPort = ComponentLoader.loadComponent("ground-operations-center", "GroundOperationsCenter");
+        try {
+            groundOperationsPort.getClass().getMethod("receive", AirCargoPalletLifterReceipt.class).invoke(groundOperationsPort, airCargoPalletLifterReceipt);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            throw new RuntimeException("could not notify ground operations center", e);
+        }
+    }
 
 
     public class Port implements IAirCargoPalletLifter {
@@ -66,17 +74,8 @@ public class AirCargoPalletLifter {
         }
 
         public void notifyGroundOperations(AirCargoPalletLifterReceipt airCargoPalletLifterReceipt){
-
+            innerNotifyGroundOperations(airCargoPalletLifterReceipt);
         }
-
-
-
-
-
-
-
-
-
 
         public String version() {
             return innerVersion();
